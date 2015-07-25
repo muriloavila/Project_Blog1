@@ -3,28 +3,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="conteudo" Runat="Server">
     <form id="form1" runat="server">
        <%modeloPost post = new modeloPost();
-      List<modeloPost> postagens = post.SelecionarPosts();
-      foreach(modeloPost posts in postagens){
-          %><%hplStatus.NavigateUrl = "index.aspx?action=1&&id="+posts.Id;
-              hplEditar.NavigateUrl = "index.aspx?action=2&&id=" + posts.Id;
-              hplDeletar.NavigateUrl = "index.aspx?action=3&&id=" + posts.Id;
-              
-               hplTitulo.Text = posts.Titulo; 
-               lblAutor.Text = posts.Autor;
-               lblData.Text = posts.Data.ToShortDateString().ToString(); 
-               lblVisitas.Text = posts.Visitas.ToString();
-               lblConteudo.Text = posts.Conteudo.Substring(0, 500) + "..."; 
-               if (posts.Status == 1) { hplStatus.Text = "Desativar"; }
-               else if (posts.Status == 0) { hplStatus.Text = "Ativar"; } %>
+         List<modeloPost> posts = post.SelecionarPosts();
+         posts.Reverse();
+         int contador = 1;
+         int i = 1;
+         if (Request.QueryString["count"] != null)
+         {
+             contador = Convert.ToInt32(Request.QueryString["count"]);
+             i = contador;
+         }
+         while (i <= contador + 5)
+         {
+             if (i > posts.Count)
+             {
+                 break;
+             }
+             else
+             {
+                 post = posts[i - 1];
+
+                 hplTitulo.NavigateUrl = "single.aspx?id=" + post.Id;
+                 hplTitulo.Text = post.Titulo;
+                 lblAutor.Text = post.Autor;
+                 lblData.Text = post.Data.ToShortDateString();
+                 if (post.Conteudo.Length > 500) { lblConteudo.Text = post.Conteudo.Substring(0, 500) + "..."; } else { lblConteudo.Text = post.Conteudo; }
+                 lblVisitas.Text = post.Visitas.ToString();
+             }
+             i = 1 + i; %>
 
 
        <h1><asp:HyperLink ID="hplTitulo" runat="server">Titulo</asp:HyperLink></h1>
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Autor: "></asp:Label>
+        Autor:
         <asp:Label ID="lblAutor" runat="server" Text="autor"></asp:Label>
-&nbsp;<asp:Label ID="Label2" runat="server" Text="Data: "></asp:Label>
+&nbsp;Data:
         <asp:Label ID="lblData" runat="server" Text="data"></asp:Label>
-&nbsp;<asp:Label ID="Label3" runat="server" Text="Visitas: "></asp:Label>
+&nbsp;Visitas:
         <asp:Label ID="lblVisitas" runat="server" Text="visitas"></asp:Label>
         <br />
         <br />
@@ -35,8 +49,14 @@
 &nbsp;<asp:HyperLink ID="hplEditar" runat="server">Editar</asp:HyperLink>
 &nbsp;<asp:HyperLink ID="hplDeletar" runat="server">Deletar</asp:HyperLink>
        <br /> <hr /><br />
-       <%} %>
+        <%
+                if (posts.Count >= contador + 5) { 
+             %>
+        <asp:LinkButton ID="lbtnNext" runat="server" OnClick="lbtnNext_Click">Proxima Pagina</asp:LinkButton>
+        
+        <%
+                }
+        }%>
        <br />
        </form>
 </asp:Content>
-

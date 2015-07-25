@@ -29,10 +29,10 @@ License: Creative Commons Attribution
     <nav>
 	<div class="width">
     		<ul>
-        		<li class="start selected"><a href="">Home</a></li>
+        		<li class="start selected"><a href="/Views/index.aspx">Home</a></li>
         	    <li class=""><a href="/Views/admin/index.aspx">Painel Administrativo</a></li>
-         	   	<li><a href="#">Posts</a></li>
-          	 	<li class="end"><a href="#">Contato</a></li>
+         	   	<li><a href="/Views/posts.aspx">Posts</a></li>
+          	 	<li class="end"><a href="/Views/Contato.aspx">Contato</a></li>
         	</ul>
 	</div>
     </nav>
@@ -47,23 +47,12 @@ License: Creative Commons Attribution
         </section>
         <aside class="sidebar">
 	
-            <ul>	
-               <li>
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#">Home Page</a></li>
-                        <li><a href="#">Style Examples</a></li>
-                        <li><a href="#">Commodo vestibulum sem mattis</a></li>
-                        <li><a href="#">Sed aliquam libero ut velit bibendum</a></li>
-                        <li><a href="#">Maecenas condimentum velit vitae</a></li>
-                    </ul>
-                </li>
-                
+            <ul>	 
                 <li>
                     <h4>About us</h4>
                     <ul>
                         <li class="text">
-                        	<p style="margin: 0;">Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. 					<a href="#" class="readmore">Read More &raquo;</a></p>
+                        	<p style="margin: 0;">Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. 					<a href="/Views/Contato.aspx" class="readmore">Send a Message... &raquo;</a></p>
                         </li>
                     </ul>
                 </li>
@@ -72,12 +61,6 @@ License: Creative Commons Attribution
                 	<h4>Search site</h4>
                     <ul>
                     	<li class="text">
-                            <form method="get" class="searchform" action="#" >
-                                <p>
-                                    <input type="text" size="26" value="" name="s" class="s" />
-                                    
-                                </p>
-                            </form>	
 						</li>
 					</ul>
                 </li>
@@ -122,5 +105,6 @@ License: Creative Commons Attribution
          </div>
     </footer>
 </div>
+
 </body>
 </html>

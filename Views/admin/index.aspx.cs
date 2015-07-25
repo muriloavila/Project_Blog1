@@ -28,4 +28,14 @@ using System.Web.UI.WebControls;
                     }
             }
         }
+
+        protected void lbtnNext_Click(object sender, EventArgs e)
+        {
+            int count = 7;
+            if (Request.QueryString["count"] != null)
+            {
+                count += Convert.ToInt32(Request.QueryString["count"]);
+            }
+            Response.Redirect("index.aspx?count=" + count);
+        }
     }
